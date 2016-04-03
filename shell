@@ -1,0 +1,67 @@
+# 查看内核完整配置项
+sysctl -a
+# 查看用户当前系统完整信息
+uname -a
+# 只查看用户当前内核版本
+uname -r
+# 查看用户系统完整限制项
+ulimit -a
+# cmake安装库流程
+mkdir build
+cd build
+cmake # 加一些选项
+make -j8 ..
+make install
+# 卸载cmake后安装的库
+cd build
+cat install_manifest.txt | sudo xargs rm # 所以不太有把握的库至少要留下install_manifest.txt
+# 临时加代理
+export http_proxy=http://ip address:port
+# 默认库的软连接
+cd /usr/bin
+sudo ln -s XXX /path/to/XXX
+# 合并文件夹内容
+sudo chmod -R 777 dira
+sudo cp dira/* /path/to/dirb
+# 递归删除文件夹
+sudo rm -R dirname
+# 重启gnome
+sudo /etc/init.d/lightdm restart
+# 查询端口占用
+netstat -anpt | grep 8080
+# 查看文件权限
+ls -l filename # 权限相关情况格式为-rwx-rwx-rwx
+# 修改文件权限
+chmod xxx filename # xxx分别描述user组、group组、other组权限，r: 4，w: 2，x: 1，-: 0
+# 当前目录mp3文件名GBK->utf8
+mid3iconv -e gbk *.mp3
+# 更改环境配置立即生效
+source /etc/profile
+# 有线网口不亮
+sudo ethtool -s eth0 autoneg off speed 100 duplex full
+# 配VPN要用到的三个文件
+/etc/pptpd.conf
+/etc/ppp/pptpd-options
+/etc/ppp/chap-secrets
+# ssh公钥私钥位置
+~/.ssh
+# 生成ssh公钥
+ssh-keygen -t rsa
+cp id_rsa.pub authorized_keys
+# ssh连接
+ssh root@ip_address
+# 启动shadow ubuntu client并后台执行
+sslocal -c ~/shadow.json &
+# 调回前台，jobnum是后台编号，jobnum缺省调回后台末个job
+fg jobnum
+# job转后台
+crtl+z
+bg jobnum
+# 查看后台jobs
+jobs
+# Ubuntu源位置
+/etc/apt/sources.list
+# squid的配置文件位置
+/etc/squid3/squid.conf
+# 查询文件/目录占用空间大小
+du -h --max-depth=0 filename
