@@ -1,0 +1,16 @@
+#!/bin/bash
+route=`route|grep default`
+route=${route##*' '}
+if [[ "$route" == usb* ]]; then
+	echo 正在使用usb共享网络。
+elif [[ "$route" == wlan* ]]; then
+	echo 正在使用无线网络。
+elif [[ "$route" == eth* ]]; then
+	echo 正在使用有线网络。
+else
+	echo 正在使用其他网络。
+fi
+ip=`ifconfig $route|grep 'inet '|cut -d':' -f2|cut -d' ' -f1`
+echo ip地址：$ip
+echo 现在你可以从其他终端通过地址 http://$ip:2333/ 访问当前目录。
+python -m SimpleHTTPServer 2333
